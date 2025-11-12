@@ -18,13 +18,26 @@ const createHtml = (games: Game[]) => {
     const imgContainer = document.createElement("div");
     const img = document.createElement("img");
     const title = document.createElement("h2");
+
+    img.src = game.Poster;
+    img.alt = game.Title;
+    title.innerHTML = game.Title;
+
+    imgContainer.appendChild(img);
+    gameContainer.appendChild(title);
+    gameContainer.appendChild(imgContainer);
+
+    const mainContainer = document.getElementById("app");
+    mainContainer?.appendChild(gameContainer);
   });
 };
 
 const getData = async () => {
-  fetch("http://www.omdbapi.com/?apikey=ffeb1c95&type=game&s=alan")
+  fetch("http://www.omdbapi.com/?apikey=ffeb1c95&type=game&s=harry")
     .then((response) => response.json())
     .then((data: OmdbResponse) => {
-      console.log(data);
+      createHtml(data.Search);
     });
 };
+
+getData();
