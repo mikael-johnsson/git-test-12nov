@@ -17,3 +17,14 @@ fetch("http://www.omdbapi.com/?apikey=ffeb1c95&type=game&s=alan")
   .then((data: OmdbResponse) => {
     console.log(data);
   });
+
+
+  const handleClick = () => {
+    const searchInput = document.getElementById("searchSeries");
+
+    searchInput
+  }
+
+  const searchButton = document.getElementById("searchButton");
+
+  searchButton?.addEventListener("click", handleClick);
