@@ -1,3 +1,13 @@
 import "./style.css";
 
-const x = 10;
+type Game = {
+  Title: string;
+  Year: string;
+  Poster: string;
+};
+
+type OmdbResponse = {
+  Search: Game[];
+  Response: string;
+  totalResults: string;
+};
