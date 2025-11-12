@@ -70,3 +70,5 @@ const getData = async (search: string) => {
       }
     );
 };
+console.log("Hej");
+
