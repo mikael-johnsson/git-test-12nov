@@ -38,20 +38,20 @@ const searchForm = document.getElementById("search");
 
 searchForm?.addEventListener("submit", (e) => {
   e.preventDefault();
-  const searchInput = document.getElementById("searchSeries");
+  const searchInput = document.getElementById("searchSeries")as HTMLInputElement;
+
 
   if (searchInput) {
-    const search = (searchInput as HTMLInputElement).value;
+    const search = searchInput.value;
 
     if(search.length !== 0){
       getData(search);
     }
     else{
       console.log("Sökfältet är tomt");
-      
     }
   }
-  
+  searchInput.value = "";
 });
 
 const getData = async (search: string) => {
