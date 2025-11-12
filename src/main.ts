@@ -13,6 +13,10 @@ type OmdbResponse = {
 };
 
 const createHtml = (games: Game[]) => {
+  const contentContainer = document.getElementById("content-container");
+  if (contentContainer) {
+    contentContainer.innerHTML = "";
+  }
   games.forEach((game) => {
     const gameContainer = document.createElement("div");
     const imgContainer = document.createElement("div");
@@ -26,30 +30,26 @@ const createHtml = (games: Game[]) => {
     gameContainer.appendChild(title);
     gameContainer.appendChild(imgContainer);
 
-    const mainContainer = document.getElementById("app");
-    mainContainer?.appendChild(gameContainer);
+    contentContainer?.appendChild(gameContainer);
   });
-}
+};
 
+const searchForm = document.getElementById("search");
 
+searchForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const searchInput = document.getElementById("searchSeries");
 
-  const searchForm = document.getElementById("search");
-
-  searchForm?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const searchInput = document.getElementById("searchSeries");
-
-    if (searchInput) {
+  if (searchInput) {
     const search = (searchInput as HTMLInputElement).value;
-    
-    console.log(search)
-    getData()
-    }
-  });
 
+    console.log(search);
+    getData(search);
+  }
+});
 
-const getData = async () => {
-  fetch("http://www.omdbapi.com/?apikey=ffeb1c95&type=game&s=harry")
+const getData = async (search: string) => {
+  fetch(`http://www.omdbapi.com/?apikey=ffeb1c95&type=game&s=${search}`)
     .then((response) => response.json())
     .then((data: OmdbResponse) => {
       createHtml(data.Search);
