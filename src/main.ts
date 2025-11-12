@@ -43,7 +43,6 @@ searchForm?.addEventListener("submit", (e) => {
   if (searchInput) {
     const search = (searchInput as HTMLInputElement).value;
 
-    console.log(search);
     getData(search);
   }
 });
@@ -51,7 +50,16 @@ searchForm?.addEventListener("submit", (e) => {
 const getData = async (search: string) => {
   fetch(`http://www.omdbapi.com/?apikey=ffeb1c95&type=game&s=${search}`)
     .then((response) => response.json())
-    .then((data: OmdbResponse) => {
-      createHtml(data.Search);
-    });
+    .then(
+      (data: OmdbResponse) => {
+        if (data.Search !== undefined) {
+          createHtml(data.Search);
+        } else {
+          console.log("LISTAN ÄR UNDEFINED");
+        }
+      },
+      () => {
+        console.log("FAIL");
+      }
+    );
 };
