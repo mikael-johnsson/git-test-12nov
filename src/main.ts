@@ -43,15 +43,12 @@ searchForm?.addEventListener("submit", (e) => {
   if (searchInput) {
     const search = (searchInput as HTMLInputElement).value;
 
-    if(search.length !== 0){
+    if (search.length !== 0) {
       getData(search);
-    }
-    else{
+    } else {
       console.log("Sökfältet är tomt");
-      
     }
   }
-  
 });
 
 const getData = async (search: string) => {
@@ -70,3 +67,5 @@ const getData = async (search: string) => {
       }
     );
 };
+
+console.log("test");
