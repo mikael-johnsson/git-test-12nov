@@ -1,36 +1,36 @@
 import "./style.css";
 
-type Game = {
+type Show = {
   Title: string;
   Year: string;
   Poster: string;
 };
 
 type OmdbResponse = {
-  Search: Game[];
+  Search: Show[];
   Response: string;
   totalResults: string;
 };
 
-const createHtml = (games: Game[]) => {
+const createHtml = (shows: Show[]) => {
   const contentContainer = document.getElementById("content-container");
   if (contentContainer) {
     contentContainer.innerHTML = "";
   }
-  games.forEach((game) => {
-    const gameContainer = document.createElement("div");
+  shows.forEach((show) => {
+    const showContainer = document.createElement("div");
     const imgContainer = document.createElement("div");
     const img = document.createElement("img");
     const title = document.createElement("h2");
-    img.src = game.Poster;
-    img.alt = game.Title;
-    title.innerHTML = game.Title;
+    img.src = show.Poster;
+    img.alt = show.Title;
+    title.innerHTML = show.Title;
 
     imgContainer.appendChild(img);
-    gameContainer.appendChild(title);
-    gameContainer.appendChild(imgContainer);
+    showContainer.appendChild(title);
+    showContainer.appendChild(imgContainer);
 
-    contentContainer?.appendChild(gameContainer);
+    contentContainer?.appendChild(showContainer);
   });
 };
 
@@ -55,7 +55,7 @@ searchForm?.addEventListener("submit", (e) => {
 });
 
 const getData = async (search: string) => {
-  fetch(`http://www.omdbapi.com/?apikey=ffeb1c95&type=game&s=${search}`)
+  fetch(`http://www.omdbapi.com/?apikey=ffeb1c95&type=series&s=${search}`)
     .then((response) => response.json())
     .then(
       (data: OmdbResponse) => {
