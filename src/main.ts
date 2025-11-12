@@ -18,7 +18,6 @@ const createHtml = (games: Game[]) => {
     const imgContainer = document.createElement("div");
     const img = document.createElement("img");
     const title = document.createElement("h2");
-
     img.src = game.Poster;
     img.alt = game.Title;
     title.innerHTML = game.Title;
@@ -39,5 +38,3 @@ const getData = async () => {
       createHtml(data.Search);
     });
 };
-
-getData();
