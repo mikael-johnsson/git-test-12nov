@@ -14,6 +14,6 @@ type OmdbResponse = {
 
 fetch("http://www.omdbapi.com/?apikey=ffeb1c95&type=game&s=alan")
   .then((response) => response.json())
-  .then((data) => {
+  .then((data: OmdbResponse) => {
     console.log(data);
   });
